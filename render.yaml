@@ -1,0 +1,27 @@
+services:
+  - type: web
+    name: vog-paints
+    env: node
+    region: frankfurt
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build && cd ../backend && npm install
+    startCommand: cd backend && node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: "10000"
+      - key: JWT_SECRET
+        value: paint_ecommerce_jwt_secret_key_2024
+      - key: JWT_EXPIRE
+        value: 7d
+      - key: GOOGLE_CLIENT_ID
+        value: 1038344464756-8sqi6si9l1kbirc8t11ipilseiegfmk4.apps.googleusercontent.com
+      - key: VITE_GOOGLE_CLIENT_ID
+        value: 1038344464756-8sqi6si9l1kbirc8t11ipilseiegfmk4.apps.googleusercontent.com
+      - key: CLIENT_URL
+        value: https://vog-paints.onrender.com
+      - key: COOKIE_SECURE
+        value: "true"
+      - key: SESSION_SECRET
+        value: dev_session_secret
