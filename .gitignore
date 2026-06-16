@@ -1,0 +1,11 @@
+node_modules/
+dist/
+.env
+backend/data/
+backend/uploads/
+backend/ssl/
+node-portable/
+frontend/public/rootCA.pem
+*.log
+.DS_Store
+Thumbs.db
