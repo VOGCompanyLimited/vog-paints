@@ -148,8 +148,7 @@ if (fs.existsSync(keyPath) && fs.existsSync(certPath)) {
 }
 
 /* ── Start Server ── */
-const PORT = process.env.PORT || 5000;
-const HTTP_PORT = process.env.HTTP_PORT || (process.env.NODE_ENV === 'production' ? 80 : 5000);
+const HTTP_PORT = process.env.PORT || process.env.HTTP_PORT || 5000;
 const HTTPS_PORT = process.env.HTTPS_PORT || 443;
 
 async function start() {

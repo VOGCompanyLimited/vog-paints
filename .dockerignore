@@ -1,0 +1,9 @@
+node_modules
+.git
+.env
+*.log
+frontend/public/rootCA.pem
+backend/data
+backend/ssl
+backend/uploads
+node-portable
