@@ -27,11 +27,11 @@ export default function AdminLogo() {
   const handleUpload = async (files) => {
     if (!files.length) return;
     const fd = new FormData();
-    fd.append('image', files[0]);
+    fd.append('images', files[0]);
     setUploading(true);
     try {
-      const { data } = await api.post('/upload/single', fd);
-      await api.put('/admin/logo', { url: data.url });
+      const { data } = await api.post('/upload', fd);
+      await api.put('/admin/logo', { url: data.urls[0] });
       setLogo(data.url);
       toast.success('Logo updated');
     } catch (err) {
