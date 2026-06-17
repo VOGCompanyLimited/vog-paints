@@ -38,6 +38,7 @@ export default function AdminDashboard() {
           <Link to="/admin/orders" className="btn-secondary text-sm">Orders</Link>
           <Link to="/admin/users" className="btn-secondary text-sm">Users</Link>
           <Link to="/admin/colors" className="btn-secondary text-sm"><FiDroplet className="w-3.5 h-3.5 inline mr-1" />Colors</Link>
+          <Link to="/admin/logo" className="btn-secondary text-sm">Logo</Link>
         </div>
       </div>
 

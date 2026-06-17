@@ -18,6 +18,7 @@ import AdminProducts from './admin/AdminProducts';
 import AdminOrders from './admin/AdminOrders';
 import AdminUsers from './admin/AdminUsers';
 import AdminColors from './admin/AdminColors';
+import AdminLogo from './admin/AdminLogo';
 
 function App() {
   const { user, loading } = useAuth();
@@ -44,6 +45,7 @@ function App() {
           <Route path="/admin/orders" element={<AdminOrders />} />
           <Route path="/admin/users" element={<AdminUsers />} />
           <Route path="/admin/colors" element={<AdminColors />} />
+          <Route path="/admin/logo" element={<AdminLogo />} />
         </Routes>
       </main>
       <Footer />

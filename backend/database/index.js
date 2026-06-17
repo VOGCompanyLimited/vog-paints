@@ -161,7 +161,8 @@ const db = {
   products: createModel('products'),
   orders: createModel('orders'),
   colors: createModel('colors'),
-  reviews: createModel('reviews')
+  reviews: createModel('reviews'),
+  settings: createModel('settings')
 };
 
 module.exports = db;

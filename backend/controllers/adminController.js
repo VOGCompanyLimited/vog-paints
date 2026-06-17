@@ -185,6 +185,38 @@ exports.toggleProductStatus = async (req, res) => {
   }
 };
 
+exports.getLogo = async (req, res) => {
+  try {
+    const setting = await db.settings.findOne({ key: 'logo' });
+    res.json({ logo: setting?.value || null });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.updateLogo = async (req, res) => {
+  try {
+    const existing = await db.settings.findOne({ key: 'logo' });
+    if (existing) {
+      await db.settings.update({ key: 'logo' }, { value: req.body.url });
+    } else {
+      await db.settings.create({ key: 'logo', value: req.body.url });
+    }
+    res.json({ logo: req.body.url });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
+exports.deleteLogo = async (req, res) => {
+  try {
+    await db.settings.remove({ key: 'logo' });
+    res.json({ message: 'Logo removed' });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.getAdminProducts = async (req, res) => {
   try {
     const products = await db.products.find({}, { sort: { createdAt: -1 } });
