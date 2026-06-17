@@ -2,7 +2,7 @@ services:
   - type: web
     name: vog-paints
     env: node
-    region: frankfurt
+    region: oregon
     plan: free
     buildCommand: cd frontend && npm install && npm run build && cd ../backend && npm install
     startCommand: cd backend && node server.js
@@ -25,5 +25,3 @@ services:
         value: "true"
       - key: SESSION_SECRET
         value: dev_session_secret
-
-# Trigger deploy
