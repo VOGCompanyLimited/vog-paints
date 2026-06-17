@@ -18,6 +18,11 @@ const { connectDB } = require('./config/db');
 
 validateEnv();
 
+['uploads', 'data'].forEach(dir => {
+  const p = path.join(__dirname, dir);
+  if (!fs.existsSync(p)) fs.mkdirSync(p, { recursive: true });
+});
+
 const app = express();
 
 /* ── Security Headers ── */

@@ -30,9 +30,7 @@ export default function AdminLogo() {
     fd.append('image', files[0]);
     setUploading(true);
     try {
-      const { data } = await api.post('/upload/single', fd, {
-        headers: { 'Content-Type': 'multipart/form-data' }
-      });
+      const { data } = await api.post('/upload/single', fd);
       await api.put('/admin/logo', { url: data.url });
       setLogo(data.url);
       toast.success('Logo updated');
