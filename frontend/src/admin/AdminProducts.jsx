@@ -151,8 +151,9 @@ export default function AdminProducts() {
                       <td className="p-4"><span className={p.stock <= 5 ? 'text-red-600 font-medium' : ''}>{p.stock}</span></td>
                       <td className="p-4"><span className={`badge ${p.isActive ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>{p.isActive ? 'Active' : 'Inactive'}</span></td>
                       <td className="p-4 text-right">
-                        <button onClick={() => editProduct(p)} className="text-primary-600 hover:text-primary-700 font-medium mr-3">Edit</button>
-                        <button onClick={() => deleteProduct(p._id)} className="text-red-600 hover:text-red-700 font-medium">Delete</button>
+                        <button onClick={() => editProduct(p)} className="text-primary-600 hover:text-primary-700 font-medium mr-2 text-xs">Edit</button>
+                        <button onClick={async () => { try { await api.patch(`/admin/products/${p._id}/toggle`); loadProducts(); toast.success(p.isActive ? 'Deactivated' : 'Activated'); } catch { toast.error('Failed'); } }} className={`font-medium mr-2 text-xs ${p.isActive ? 'text-orange-600 hover:text-orange-700' : 'text-green-600 hover:text-green-700'}`}>{p.isActive ? 'Deactivate' : 'Activate'}</button>
+                        <button onClick={() => deleteProduct(p._id)} className="text-red-600 hover:text-red-700 font-medium text-xs">Delete</button>
                       </td>
                     </tr>
                   ))}

@@ -3,7 +3,7 @@ const db = require('../database');
 exports.getProducts = async (req, res) => {
   try {
     const { category, color, colorFamily, finish, search, minPrice, maxPrice, sort, page = 1, limit = 20 } = req.query;
-    let query = {};
+    let query = { isActive: true };
     if (category) query.category = { $regex: category, $options: 'i' };
     if (color) query.color = { $regex: color, $options: 'i' };
     if (colorFamily) query.colorFamily = colorFamily;

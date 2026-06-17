@@ -3,7 +3,8 @@ const router = express.Router();
 const {
   getDashboard, getOrders, updateOrderStatus,
   getUsers, updateUserRole, getDeliveryPartners,
-  createColor, updateColor, deleteColor, mixColors, getAdminProducts
+  createColor, updateColor, deleteColor, mixColors, getAdminProducts,
+  toggleProductStatus
 } = require('../controllers/adminController');
 const { protect, admin } = require('../middleware/auth');
 const { getColors } = require('../controllers/productController');
@@ -17,6 +18,7 @@ router.get('/users', getUsers);
 router.put('/users/:id/role', updateUserRole);
 router.get('/delivery-partners', getDeliveryPartners);
 router.get('/products', getAdminProducts);
+router.patch('/products/:id/toggle', toggleProductStatus);
 router.post('/colors', createColor);
 router.put('/colors/:id', updateColor);
 router.delete('/colors/:id', deleteColor);

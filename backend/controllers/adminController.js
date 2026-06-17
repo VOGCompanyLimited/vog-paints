@@ -174,6 +174,17 @@ exports.mixColors = async (req, res) => {
   }
 };
 
+exports.toggleProductStatus = async (req, res) => {
+  try {
+    const product = await db.products.findById(req.params.id);
+    if (!product) return res.status(404).json({ message: 'Product not found' });
+    const updated = await db.products.findByIdAndUpdate(req.params.id, { isActive: !product.isActive }, { new: true });
+    res.json(updated);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+};
+
 exports.getAdminProducts = async (req, res) => {
   try {
     const products = await db.products.find({}, { sort: { createdAt: -1 } });
