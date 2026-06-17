@@ -43,9 +43,9 @@ export default function Footer() {
           <div>
             <h4 className="text-white font-semibold mb-4">Contact Us</h4>
             <ul className="space-y-3 text-sm">
-              <li className="flex items-center gap-2"><FiMapPin className="w-4 h-4 text-primary-400" /> Accra, Ghana</li>
-              <li className="flex items-center gap-2"><FiPhone className="w-4 h-4 text-primary-400" /> +233 50 123 4567</li>
-              <li className="flex items-center gap-2"><FiMail className="w-4 h-4 text-primary-400" /> info@paintmarket.gh</li>
+              <li className="flex items-center gap-2"><FiMapPin className="w-4 h-4 text-primary-400" /> Kumasi, Ghana</li>
+              <li className="flex items-center gap-2"><FiPhone className="w-4 h-4 text-primary-400" /> +233 53 910 3563</li>
+              <li className="flex items-center gap-2"><FiMail className="w-4 h-4 text-primary-400" /> vogcompanylimited@gmail.com</li>
             </ul>
           </div>
         </div>
