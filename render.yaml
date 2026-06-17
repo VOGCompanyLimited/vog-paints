@@ -25,3 +25,5 @@ services:
         value: "true"
       - key: SESSION_SECRET
         value: dev_session_secret
+
+# Trigger deploy
