@@ -11,6 +11,7 @@ export default function AdminLogo() {
   const fileRef = useRef(null);
   const [logo, setLogo] = useState(null);
   const [uploading, setUploading] = useState(false);
+  const [urlInput, setUrlInput] = useState('');
 
   useEffect(() => {
     if (!user || user.role !== 'admin') { navigate('/'); return; }
@@ -30,15 +31,35 @@ export default function AdminLogo() {
     fd.append('images', files[0]);
     setUploading(true);
     try {
-      const { data } = await api.post('/upload', fd);
+      const token = localStorage.getItem('token');
+      const res = await fetch('/api/upload', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${token}` },
+        body: fd
+      });
+      if (!res.ok) {
+        const err = await res.json();
+        throw new Error(err.message || 'Upload failed');
+      }
+      const data = await res.json();
       await api.put('/admin/logo', { url: data.urls[0] });
-      setLogo(data.url);
+      setLogo(data.urls[0]);
       toast.success('Logo updated');
     } catch (err) {
-      toast.error(err?.response?.data?.message || err?.message || 'Upload failed');
+      toast.error(err.message || 'Upload failed');
     } finally {
       setUploading(false);
     }
+  };
+
+  const setLogoUrl = async () => {
+    if (!urlInput) return;
+    try {
+      await api.put('/admin/logo', { url: urlInput });
+      setLogo(urlInput);
+      setUrlInput('');
+      toast.success('Logo updated');
+    } catch { toast.error('Failed to set logo URL'); }
   };
 
   const removeLogo = async () => {
@@ -71,6 +92,14 @@ export default function AdminLogo() {
 
         <input ref={fileRef} type="file" accept="image/*" className="hidden" onChange={(e) => handleUpload(e.target.files)} disabled={uploading} />
         {uploading && <p className="text-xs text-primary-600 mt-2">Uploading...</p>}
+
+        <div className="mt-6 pt-6 border-t border-gray-100">
+          <p className="text-sm text-gray-500 mb-2">Or paste an image URL:</p>
+          <div className="flex gap-2">
+            <input type="text" value={urlInput} onChange={(e) => setUrlInput(e.target.value)} placeholder="https://example.com/logo.png" className="input-field text-sm flex-1" />
+            <button onClick={setLogoUrl} className="btn-primary text-sm">Set URL</button>
+          </div>
+        </div>
       </div>
     </div>
   );
