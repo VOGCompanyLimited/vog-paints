@@ -34,8 +34,8 @@ export default function AdminLogo() {
       await api.put('/admin/logo', { url: data.url });
       setLogo(data.url);
       toast.success('Logo updated');
-    } catch {
-      toast.error('Upload failed');
+    } catch (err) {
+      toast.error(err?.response?.data?.message || err?.message || 'Upload failed');
     } finally {
       setUploading(false);
     }
